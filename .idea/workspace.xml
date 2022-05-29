@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bc54a0f-7304-4d10-808d-0209e2528d7d" name="Changes" comment="Added an illustration to the README.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3bc54a0f-7304-4d10-808d-0209e2528d7d" name="Changes" comment="Designing the algorithm.">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -170,7 +169,28 @@
       <option name="project" value="LOCAL" />
       <updated>1653795250108</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Designing the algorithm.">
+      <created>1653797193787</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1653797193787</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Designing the algorithm.">
+      <created>1653797227183</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1653797227183</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Designing the algorithm.">
+      <created>1653797295234</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1653797295234</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -191,6 +211,7 @@
     <MESSAGE value="Increased Tree's size from 1-3, testing locate's method traversal on small set." />
     <MESSAGE value="Increased Tree's size from 3-8, testing locate's method traversal on a larger set." />
     <MESSAGE value="Added an illustration to the README." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added an illustration to the README." />
+    <MESSAGE value="Designing the algorithm." />
+    <option name="LAST_COMMIT_MESSAGE" value="Designing the algorithm." />
   </component>
 </project>
