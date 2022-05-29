@@ -39,4 +39,4 @@ pseudocode:
       - If yes, stop search 
       - If no, check for children nodes
       - Check all descendants until desired value is found or end of tree is reached
-  - Return value indicating that search was successful or unsuccessful 
+- Return value indicating that search was successful or unsuccessful 
