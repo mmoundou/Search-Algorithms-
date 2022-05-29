@@ -23,7 +23,7 @@ pseudocode:
           - Check all descendants until desired value is found or end of tree is reached
     - Return value indicating that search was successful or unsuccessful 
 
-## **Taking in Account the Data Structure's Specifics**
+## **Taking in Account the Data Structure Specifics**
 
 Earlier, we assumed our tree did not allow for duplicates, and doing so allowed us some leeway in how we proceeded.
 This is not the case all the time, as some tree API's allow for duplicate values. Another thing we must consider is
