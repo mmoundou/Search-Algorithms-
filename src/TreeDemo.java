@@ -11,10 +11,11 @@
 
 public class TreeDemo {
 
+
     private NodeDemo head;
 
-    // Default constructor, implemented for test purposes
-    public TreeDemo() {
+
+    public TreeDemo() { // Default constructor, implemented for test purposes
         head = new NodeDemo();
     }
 
@@ -24,13 +25,12 @@ public class TreeDemo {
 
     public TreeDemo(int[] idArray) {
 
-        int[] arr = new int[idArray.length - 1];
-
-        for(int index = 1; index < idArray.length; index++)
-            arr[index - 1] = idArray[index];
-
         head = new NodeDemo(idArray[0]);
-        head.addChildArray(arr);
+
+        for(int index = 1; index < idArray.length; index++) {
+            if(!locate(idArray[index]))
+                head.addChild(idArray[index]);
+        }
 
     }
 
@@ -58,9 +58,9 @@ public class TreeDemo {
 
     public void addIdArray(int[] idArray) {
 
-        for(int index = 0; index < idArray.length; index++) {
-            if(!locate(idArray[index]))
-                head.addChild(idArray[index]);
+        for (int i : idArray) {
+            if (!locate(i))
+                head.addChild(i);
         }
 
     }
@@ -84,7 +84,7 @@ public class TreeDemo {
                 return true;
             else if (tracker.getId() > id)
                 tracker = tracker.lc;
-            else if (tracker.getId() < id)
+            else
                 tracker = tracker.rc;
 
         }
@@ -139,37 +139,11 @@ public class TreeDemo {
 
             }
 
-            if(id < lastNodeTracker.getId())
-                lastNodeTracker.setLc(new NodeDemo(id));
-            else if(id > lastNodeTracker.getId())
-                lastNodeTracker.setRc(new NodeDemo(id));
+            if(lastNodeTracker != null) {
 
-        }
-
-        void addChildArray(int[] childArray) {
-
-            for(int index = 0; index < childArray.length; index++) {
-
-                int id = childArray[index];
-                NodeDemo tracker = head;
-                NodeDemo lastNodeTracker = tracker;
-
-                while(tracker != null) {
-
-                    if(id < tracker.getId()) {
-                        lastNodeTracker = tracker;
-                        tracker = tracker.getLc();
-                    }
-                    else if(id > tracker.getId()) {
-                        lastNodeTracker = tracker;
-                        tracker = tracker.getRc();
-                    }
-
-                }
-
-                if(id < lastNodeTracker.getId())
+                if (id < lastNodeTracker.getId())
                     lastNodeTracker.setLc(new NodeDemo(id));
-                else if(id > lastNodeTracker.getId())
+                else
                     lastNodeTracker.setRc(new NodeDemo(id));
 
             }
