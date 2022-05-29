@@ -32,11 +32,11 @@ an element with left descendant; an element with right descendant; an element wi
 We must take these representations in consideration when designing our algorithm, thus leading us to the following
 pseudocode: 
 
-- Is tree's variable null? 
-  - If yes, stop search
-  - If no, query the tree's head node 
-    - Is head's value == desired value? 
-      - If yes, stop search 
-      - If no, check for children nodes
-      - Check all descendants until desired value is found or end of tree is reached
-- Return value indicating that search was successful or unsuccessful 
+    - Is tree's variable null? 
+      - If yes, stop search
+      - If no, query the tree's head node 
+        - Is head's value == desired value? 
+          - If yes, stop search 
+          - If no, check for children nodes
+          - Check all descendants until desired value is found or end of tree is reached
+    - Return value indicating that search was successful or unsuccessful 
