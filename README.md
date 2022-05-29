@@ -1,4 +1,5 @@
 
+#Motivation#
 
 Most programming languages have pre-defined search algorithms; 
 leveraging them allows for more efficient software development with the added peace 
