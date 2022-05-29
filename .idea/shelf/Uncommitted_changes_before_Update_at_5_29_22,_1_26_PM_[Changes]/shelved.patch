@@ -1,0 +1,237 @@
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\n# **Motivation**\n\nMost programming languages have pre-defined search algorithms; leveraging them allows for efficient software development \nand peace of mind (as most of them have been thoroughly tested for reliability and compatibility). \nSometimes, however, they are not suited for some custom-made API's, \nso I figured playing around designing a search algorithm of my own would be a cool enterprise. \n\n![Binary Search Tree](tree_illustration.png)\n\nLet the tree above serve as storage for a state's license plates, \nso that we can query the tree to locate specific plate numbers; \nwe would traverse the plates in the tree, and compare each plate's number to the number we're looking for.\nUpon successfully locating the desired number, we would stop our search; otherwise, we would continue our search, until\nthe desired value was found, or we'd reached the end of the tree. \n\nAssumption: Our tree does not allow for duplicate values; no two cars exist with the same plate number, after all. \n\n## **Designing the Algorithm**\n\nTo effectively search our tree, we must ensure that it *exists*. From an every-day point of view, the previous\nstatement does not make sense--searching a tree implies that it exists. Since we are dealing with memory,however, \na tree is typically represented by a variable, and this variable interfaces between our program and the tree's contents.\n\nLet myTree be our tree variable; the following piece of code comes to mind: **if myTree != null**. \nDepending on whether we are querying the first element of our tree or any of its descendants, \na query might be of type **myTree.head == searchVal** or **myTree.descendant == searchVal**. \nMore generally, though, a query would be of type **myTree.element == searchVal**.\n\nAt any level of a non-empty tree, we usually have 04 types of representations: a single tree element (also called node); \nan element with left descendant; an element with right descendant; an element with both right and left descendants.\nWe must take these representations in consideration when designing our algorithm, thus leading us to the following\npseudocode: \n\n    - Is tree's variable null? \n      - If yes, stop search\n      - If no, query the tree's head node \n        - Is head's value == desired value? \n          - If yes, stop search \n          - If no, check for children nodes\n          - Check all descendants until desired value is found or end of tree is reached\n    - Return value indicating that search was successful or unsuccessful \n\n## **Taking in Account the Data Structure's Specifics**\n\nEarlier, we assumed our tree did not allow for duplicates, and doing so allowed us some leeway in how we proceeded.\nThis is not the case all the time, as some tree API's allow for duplicate values. Another thing we must consider is \nhow our values (license plate numbers) are stored internally: are they stored in ascending order, descending order, or\nsequentially? This would arguably have the greatest impact in what we do next. \n\nIf the values are stored in ascending order, we could implement bits of our search as follows: \n\n    if(myTree.node.value == value) \n        value found\n    else if(myTree.node.value > value)\n        traverse left side of node\n    else if(myTree.node.value < value)\n        traverse right side of node\n\nThe above logic would be reversed for both the \"if else\" statements in descending order. \n\nIf sequential, we could simply traverse the tree as a traditional Linked List, whereby, for each node, we access\nthe node that follows it as follows:\n\n    if(myTree.node.value == value)\n        value found\n    else(myTree.node.next)\n\nFor our exercise, we will assume that the tree's nodes are arranged in ascending order. \n\n## **Final Steps**\n\nPiecing together everything said above, we have the following finalized pseudocode: \n\n    - Check for null status of tree's variable\n    - Query each node\n        - If node's value equals desired value, notify caller \n    - Return search status to caller\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	(revision dc06420daf0e4e8c110e7d0fb37f6f099e1c4a54)
++++ b/README.md	(date 1653840345136)
+@@ -31,7 +31,12 @@
+ an element with left descendant; an element with right descendant; an element with both right and left descendants.
+ We must take these representations in consideration when designing our algorithm, thus leading us to the following
+ pseudocode: 
+-
++<details>
++  <summary>Code example</summary>
++  <p>
++    ...
++  </p>
++</details>
+     - Is tree's variable null? 
+       - If yes, stop search
+       - If no, query the tree's head node 
+Index: src/TreeDemo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\n/**\n * TreeDemo models a Tree API that serves as storage structure for a state's license plates.\n * The API allows for data structures of any size, and stores the plates\n * in ascending order (where each plate number is greater than the one that\n * precedes it and smaller than the one that follows it).\n *\n * @author Matthieu Moundou\n *\n */\n\npublic class TreeDemo {\n\n    private NodeDemo head;\n\n    // Default constructor, implemented for test purposes\n    public TreeDemo() {\n        head = new NodeDemo();\n    }\n\n    public TreeDemo(int id) {\n        head = new NodeDemo(id);\n    }\n\n    public TreeDemo(int[] idArray) {\n\n        int[] arr = new int[idArray.length - 1];\n\n        for(int index = 1; index < idArray.length; index++)\n            arr[index - 1] = idArray[index];\n\n        head = new NodeDemo(idArray[0]);\n        head.addChildArray(arr);\n\n    }\n\n    /**\n     * addId takes in an integer parameter representing a license plate number,\n     * and loads it into the Tree's data structure.\n     *\n     * @param id - an integer value representing a license plate.\n     *\n     * */\n\n    public void addId(int id) {\n        head.addChild(id);\n    }\n\n    /**\n     * addIdArray takes in a list of integer values (in the form of an array)\n     * representing a license plate numbers, and loads them into the Tree's data structure.\n     *\n     * @param idArray - an integer array representing a set of license plates.\n     *\n     * */\n\n    public void addIdArray(int[] idArray) {\n        head.addChildArray(idArray);\n\n    }\n\n    /**\n     * locate takes in an integer value, searches the data structure for that value,\n     * and returns a boolean value indicating whether the value was found or not.\n     *\n     * @param id - an integer value representing the search value.\n     * @return - boolean value indicating that the search was successful or unsuccessful\n     *\n     */\n\n    public boolean locate(int id) {\n\n        NodeDemo tracker = head;\n\n        while(tracker != null) {\n\n            if (tracker.getId() == id)\n                return true;\n            else if (tracker.getId() > id)\n                tracker = tracker.lc;\n            else if (tracker.getId() < id)\n                tracker = tracker.rc;\n\n        }\n\n        return false;\n\n    }\n\n\n    private class NodeDemo {\n\n        int id;\n        NodeDemo lc;\n        NodeDemo rc;\n\n        NodeDemo() {\n            id = 1;\n            lc = rc = null;\n        }\n\n        NodeDemo(int id) {\n            this.id = id;\n        }\n\n        int getId() {\n            return id;\n        }\n\n        NodeDemo getLc() {\n            return lc;\n        }\n\n        NodeDemo getRc() {\n            return rc;\n        }\n\n        void addChild(int id) {\n\n            NodeDemo tracker = head;\n            NodeDemo lastNodeTracker = tracker;\n\n            while(tracker != null) {\n\n                if(id < tracker.getId()) {\n                    lastNodeTracker = tracker;\n                    tracker = tracker.getLc();\n                }\n                else if(id > tracker.getId()) {\n                    lastNodeTracker = tracker;\n                    tracker = tracker.getRc();\n                }\n\n            }\n\n            if(id < lastNodeTracker.getId())\n                lastNodeTracker.setLc(new NodeDemo(id));\n            else if(id > lastNodeTracker.getId())\n                lastNodeTracker.setRc(new NodeDemo(id));\n\n        }\n\n        void addChildArray(int[] childArray) {\n\n            for(int index = 0; index < childArray.length; index++) {\n\n                int id = childArray[index];\n                NodeDemo tracker = head;\n                NodeDemo lastNodeTracker = tracker;\n\n                while(tracker != null) {\n\n                    if(id < tracker.getId()) {\n                        lastNodeTracker = tracker;\n                        tracker = tracker.getLc();\n                    }\n                    else if(id > tracker.getId()) {\n                        lastNodeTracker = tracker;\n                        tracker = tracker.getRc();\n                    }\n\n                }\n\n                if(id < lastNodeTracker.getId())\n                    lastNodeTracker.setLc(new NodeDemo(id));\n                else if(id > lastNodeTracker.getId())\n                    lastNodeTracker.setRc(new NodeDemo(id));\n\n            }\n\n        }\n\n        private void setLc(NodeDemo lc) {\n            this.lc = lc;\n        }\n\n        private void setRc(NodeDemo rc) {\n            this.rc = rc;\n        }\n\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/TreeDemo.java b/src/TreeDemo.java
+--- a/src/TreeDemo.java	(revision dc06420daf0e4e8c110e7d0fb37f6f099e1c4a54)
++++ b/src/TreeDemo.java	(date 1653843210279)
+@@ -11,10 +11,9 @@
+ 
+ public class TreeDemo {
+ 
+-    private NodeDemo head;
++    private final NodeDemo head;
+ 
+-    // Default constructor, implemented for test purposes
+-    public TreeDemo() {
++    public TreeDemo() { // Default constructor, implemented for test purposes
+         head = new NodeDemo();
+     }
+ 
+@@ -24,26 +23,28 @@
+ 
+     public TreeDemo(int[] idArray) {
+ 
+-        int[] arr = new int[idArray.length - 1];
+-
+-        for(int index = 1; index < idArray.length; index++)
+-            arr[index - 1] = idArray[index];
+-
+         head = new NodeDemo(idArray[0]);
+-        head.addChildArray(arr);
++
++        for(int index = 1; index < idArray.length; index++) {
++            if(!locate(idArray[index]))
++                head.addChild(idArray[index]);
++        }
+ 
+     }
+ 
+     /**
+      * addId takes in an integer parameter representing a license plate number,
+-     * and loads it into the Tree's data structure.
++     * and loads it into the Tree's data structure. Before loading the parameter
++     * into the data structure, addId verifies that the value does not already
++     * exist in our data structure.
+      *
+      * @param id - an integer value representing a license plate.
+      *
+      * */
+ 
+     public void addId(int id) {
+-        head.addChild(id);
++        if(!locate(id))
++            head.addChild(id);
+     }
+ 
+     /**
+@@ -55,7 +56,11 @@
+      * */
+ 
+     public void addIdArray(int[] idArray) {
+-        head.addChildArray(idArray);
++
++        for (int i : idArray) {
++            if (!locate(i))
++                head.addChild(i);
++        }
+ 
+     }
+ 
+@@ -78,7 +83,7 @@
+                 return true;
+             else if (tracker.getId() > id)
+                 tracker = tracker.lc;
+-            else if (tracker.getId() < id)
++            else
+                 tracker = tracker.rc;
+ 
+         }
+@@ -133,37 +138,11 @@
+ 
+             }
+ 
+-            if(id < lastNodeTracker.getId())
+-                lastNodeTracker.setLc(new NodeDemo(id));
+-            else if(id > lastNodeTracker.getId())
+-                lastNodeTracker.setRc(new NodeDemo(id));
+-
+-        }
+-
+-        void addChildArray(int[] childArray) {
+-
+-            for(int index = 0; index < childArray.length; index++) {
+-
+-                int id = childArray[index];
+-                NodeDemo tracker = head;
+-                NodeDemo lastNodeTracker = tracker;
+-
+-                while(tracker != null) {
+-
+-                    if(id < tracker.getId()) {
+-                        lastNodeTracker = tracker;
+-                        tracker = tracker.getLc();
+-                    }
+-                    else if(id > tracker.getId()) {
+-                        lastNodeTracker = tracker;
+-                        tracker = tracker.getRc();
+-                    }
+-
+-                }
+-
+-                if(id < lastNodeTracker.getId())
++            if(lastNodeTracker != null) {
++
++                if (id < lastNodeTracker.getId())
+                     lastNodeTracker.setLc(new NodeDemo(id));
+-                else if(id > lastNodeTracker.getId())
++                else
+                     lastNodeTracker.setRc(new NodeDemo(id));
+ 
+             }
+Index: src/TreeDemoTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\nimport static org.junit.jupiter.api.Assertions.*;\n\nclass TreeDemoTest {\n\n    TreeDemo myTree;\n\n    @org.junit.jupiter.api.BeforeEach\n    void setUp() {\n        myTree = new TreeDemo();\n    }\n\n    @org.junit.jupiter.api.AfterEach\n    void tearDown() {\n        myTree = null;\n    }\n\n    @org.junit.jupiter.api.Test\n    void addId() {\n\n        int id1 = 18, id2 = 0;\n        myTree.addId(id1);\n        assertEquals(true, myTree.locate(id1));\n        myTree.addId(id2);\n        assertEquals(true, myTree.locate(id2));\n\n    }\n\n    @org.junit.jupiter.api.Test\n    void addIdArray() {\n\n        int[] idArray = {11, 12, 13, 14, 15};\n\n        myTree.addIdArray(idArray);\n\n        for(int index = 0; index < idArray.length; index++)\n            assertEquals(true, myTree.locate(idArray[index]));\n\n    }\n\n    @org.junit.jupiter.api.Test\n    void locate() {\n        assertEquals(false, myTree.locate(3));\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/TreeDemoTest.java b/src/TreeDemoTest.java
+--- a/src/TreeDemoTest.java	(revision dc06420daf0e4e8c110e7d0fb37f6f099e1c4a54)
++++ b/src/TreeDemoTest.java	(date 1653842481936)
+@@ -31,7 +31,8 @@
+ 
+         int[] idArray = {11, 12, 13, 14, 15};
+ 
+-        myTree.addIdArray(idArray);
++        for(int index = 0; index < idArray.length; index++)
++            myTree.addId(idArray[index]);
+ 
+         for(int index = 0; index < idArray.length; index++)
+             assertEquals(true, myTree.locate(idArray[index]));
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"3bc54a0f-7304-4d10-808d-0209e2528d7d\" name=\"Changes\" comment=\"Final words.\">\n      <change afterPath=\"$PROJECT_DIR$/process.md\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/modules.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/modules.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/README.md\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/README.md\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Searching-Algorithms-.iml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Search-Algorithms-.iml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/TreeDemo.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/TreeDemo.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n        <option value=\"JUnit5 Test Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"29oZ7nUxVW22VAe8BCy2RWL4C49\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,\n    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,\n    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,\n    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,\n    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,\n    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"CreateTestDialog.Recents.Supers\">\n      <recent name=\"\" />\n    </key>\n    <key name=\"CreateTestDialog.RecentsKey\">\n      <recent name=\"\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"TreeDemoTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"Search-Algorithms-\" />\n      <option name=\"PACKAGE_NAME\" value=\"\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"TreeDemoTest\" />\n      <option name=\"TEST_OBJECT\" value=\"class\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"JUnit.TreeDemoTest\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"3bc54a0f-7304-4d10-808d-0209e2528d7d\" name=\"Changes\" comment=\"\" />\n      <created>1653781235828</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1653781235828</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"Created API's initial prototype for test purposes.\">\n      <created>1653781912205</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653781912205</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Created API's initial prototype for test purposes.\">\n      <created>1653782010341</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653782010341</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Added a README (draft version).\">\n      <created>1653782574668</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653782574668</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"Tentative implementation of the &quot;locate&quot; method.\">\n      <created>1653786439517</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653786439517</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"Increased Tree's size from 1-3, testing locate's method traversal on small set.\">\n      <created>1653790870273</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653790870273</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"Increased Tree's size from 3-8, testing locate's method traversal on a larger set.\">\n      <created>1653792769698</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653792769698</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"Added an illustration to the README.\">\n      <created>1653794610757</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653794610757</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"Added an illustration to the README.\">\n      <created>1653794916942</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653794916942</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"Added an illustration to the README.\">\n      <created>1653795087709</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653795087709</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"Added an illustration to the README.\">\n      <created>1653795121149</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653795121149</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"Added an illustration to the README.\">\n      <created>1653795140977</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653795140977</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"Added an illustration to the README.\">\n      <created>1653795201331</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653795201331</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"Added an illustration to the README.\">\n      <created>1653795250108</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653795250108</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"Designing the algorithm.\">\n      <created>1653797193787</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653797193787</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"Designing the algorithm.\">\n      <created>1653797227183</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653797227183</updated>\n    </task>\n    <task id=\"LOCAL-00016\" summary=\"Designing the algorithm.\">\n      <created>1653797295234</created>\n      <option name=\"number\" value=\"00016\" />\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653797295234</updated>\n    </task>\n    <task id=\"LOCAL-00017\" summary=\"Designing the algorithm.\">\n      <created>1653798540302</created>\n      <option name=\"number\" value=\"00017\" />\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653798540302</updated>\n    </task>\n    <task id=\"LOCAL-00018\" summary=\"Final words.\">\n      <created>1653799169386</created>\n      <option name=\"number\" value=\"00018\" />\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1653799169386</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"19\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"Created API's initial prototype for test purposes.\" />\n    <MESSAGE value=\"Added a README (draft version).\" />\n    <MESSAGE value=\"Tentative implementation of the &quot;locate&quot; method.\" />\n    <MESSAGE value=\"Increased Tree's size from 1-3, testing locate's method traversal on small set.\" />\n    <MESSAGE value=\"Increased Tree's size from 3-8, testing locate's method traversal on a larger set.\" />\n    <MESSAGE value=\"Added an illustration to the README.\" />\n    <MESSAGE value=\"Designing the algorithm.\" />\n    <MESSAGE value=\"Final words.\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Final words.\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision dc06420daf0e4e8c110e7d0fb37f6f099e1c4a54)
++++ b/.idea/workspace.xml	(date 1653844982883)
+@@ -4,14 +4,11 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="3bc54a0f-7304-4d10-808d-0209e2528d7d" name="Changes" comment="Final words.">
+-      <change afterPath="$PROJECT_DIR$/process.md" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
++    <list default="true" id="3bc54a0f-7304-4d10-808d-0209e2528d7d" name="Changes" comment="Optimized some statements.">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Searching-Algorithms-.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Search-Algorithms-.iml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/TreeDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeDemo.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/TreeDemoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeDemoTest.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -33,6 +30,7 @@
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="RESET_MODE" value="MIXED" />
+   </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+@@ -215,7 +213,21 @@
+       <option name="project" value="LOCAL" />
+       <updated>1653799169386</updated>
+     </task>
+-    <option name="localTasksCounter" value="19" />
++    <task id="LOCAL-00019" summary="Created a JavaDoc for TreeDemo class.">
++      <created>1653841214486</created>
++      <option name="number" value="00019" />
++      <option name="presentableId" value="LOCAL-00019" />
++      <option name="project" value="LOCAL" />
++      <updated>1653841214486</updated>
++    </task>
++    <task id="LOCAL-00020" summary="Optimized some statements.">
++      <created>1653843543269</created>
++      <option name="number" value="00020" />
++      <option name="presentableId" value="LOCAL-00020" />
++      <option name="project" value="LOCAL" />
++      <updated>1653843543269</updated>
++    </task>
++    <option name="localTasksCounter" value="21" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -238,6 +250,8 @@
+     <MESSAGE value="Added an illustration to the README." />
+     <MESSAGE value="Designing the algorithm." />
+     <MESSAGE value="Final words." />
+-    <option name="LAST_COMMIT_MESSAGE" value="Final words." />
++    <MESSAGE value="Created a JavaDoc for TreeDemo class." />
++    <MESSAGE value="Optimized some statements." />
++    <option name="LAST_COMMIT_MESSAGE" value="Optimized some statements." />
+   </component>
+ </project>
+\ No newline at end of file

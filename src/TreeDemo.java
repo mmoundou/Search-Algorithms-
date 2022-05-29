@@ -43,6 +43,7 @@ public class TreeDemo {
      *
      * */
 
+
     public void addId(int id) {
         if(!locate(id))
             head.addChild(id);
@@ -56,14 +57,14 @@ public class TreeDemo {
      *
      * */
 
-    public void addIdArray(int[] idArray) {
+    /*public void addIdArray(int[] idArray) {
 
         for (int i : idArray) {
             if (!locate(i))
                 head.addChild(i);
         }
 
-    }
+    }*/
 
     /**
      * locate takes in an integer value, searches the data structure for that value,
