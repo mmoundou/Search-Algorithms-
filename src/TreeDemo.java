@@ -1,16 +1,20 @@
 
 public class TreeDemo {
+
     private NodeDemo head;
 
     public TreeDemo() {
         head = new NodeDemo();
     }
+
     public void addId(int id) {
         head.addChild(id);
     }
+
     public void addIdArray(int[] idArray) {
         head.addChildArray(idArray);
     }
+
     public boolean locate(int id) {
 
         NodeDemo tracker = head;
@@ -29,27 +33,35 @@ public class TreeDemo {
         return false;
 
     }
+
+
     private class NodeDemo {
+
         int id;
         NodeDemo lc;
         NodeDemo rc;
+
         NodeDemo() {
             id = 1;
-            lc = new NodeDemo(2);
-            rc = new NodeDemo(3);
+            lc = rc = null;
         }
+
         NodeDemo(int id) {
             this.id = id;
         }
+
         int getId() {
             return id;
         }
+
         NodeDemo getLc() {
             return lc;
         }
+
         NodeDemo getRc() {
             return rc;
         }
+
         void addChild(int id) {
 
             NodeDemo tracker = head;
@@ -74,6 +86,7 @@ public class TreeDemo {
                 lastNodeTracker.setRc(new NodeDemo(id));
 
         }
+
         void addChildArray(int[] childArray) {
 
             for(int index = 0; index < childArray.length; index++) {
@@ -103,9 +116,11 @@ public class TreeDemo {
             }
 
         }
+
         private void setLc(NodeDemo lc) {
             this.lc = lc;
         }
+
         private void setRc(NodeDemo rc) {
             this.rc = rc;
         }
