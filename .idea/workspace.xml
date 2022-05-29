@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bc54a0f-7304-4d10-808d-0209e2528d7d" name="Changes" comment="Final words.">
-      <change afterPath="$PROJECT_DIR$/process.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="3bc54a0f-7304-4d10-808d-0209e2528d7d" name="Changes" comment="Created a JavaDoc for TreeDemo class.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Searching-Algorithms-.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Search-Algorithms-.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TreeDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TreeDemoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeDemoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653799169386</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Created a JavaDoc for TreeDemo class.">
+      <created>1653841214486</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1653841214486</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -238,6 +242,7 @@
     <MESSAGE value="Added an illustration to the README." />
     <MESSAGE value="Designing the algorithm." />
     <MESSAGE value="Final words." />
-    <option name="LAST_COMMIT_MESSAGE" value="Final words." />
+    <MESSAGE value="Created a JavaDoc for TreeDemo class." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created a JavaDoc for TreeDemo class." />
   </component>
 </project>

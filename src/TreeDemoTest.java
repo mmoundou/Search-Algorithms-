@@ -31,7 +31,8 @@ class TreeDemoTest {
 
         int[] idArray = {11, 12, 13, 14, 15};
 
-        myTree.addIdArray(idArray);
+        for(int index = 0; index < idArray.length; index++)
+            myTree.addId(idArray[index]);
 
         for(int index = 0; index < idArray.length; index++)
             assertEquals(true, myTree.locate(idArray[index]));
