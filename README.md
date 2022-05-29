@@ -16,5 +16,3 @@ there are no duplicate values in the tree. A typical query would be of type "myT
 Now, that depends on a couple of factors: 
 The tree is not null We already have a reference to the tree's head The desired value is not located in the tree's head 
 The tree's head has descendants. 
-
-More generally, however, we can say that we are simply querying a tree node, whether it be head or descendant.

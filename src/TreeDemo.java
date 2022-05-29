@@ -10,18 +10,23 @@ public class TreeDemo {
         return -1; //Stub
     }
 
+    /*
+        public void addElement(int id) {
+        }
+    */
+
     public boolean locate(int id) {
 
         NodeDemo tracker = head;
 
         while(tracker != null) {
 
-            if (head.getId() == id)
+            if (tracker.getId() == id)
                 return true;
-            else if (head.getId() > id)
-                tracker = head.lc;
-            else if (head.getId() < id)
-                tracker = head.rc;
+            else if (tracker.getId() > id)
+                tracker = tracker.lc;
+            else if (tracker.getId() < id)
+                tracker = tracker.rc;
 
         }
 
@@ -31,11 +36,13 @@ public class TreeDemo {
 
     private class NodeDemo {
         int id;
-        NodeDemo lc, rc;
+        NodeDemo lc;
+        NodeDemo rc;
 
         NodeDemo() {
-            id = -1;
-            lc = rc = null;
+            id = 1;
+            lc = new NodeDemo(2);
+            rc = new NodeDemo(3);
         }
 
         NodeDemo(int id) {
@@ -54,19 +61,44 @@ public class TreeDemo {
             return rc;
         }
 
+        /*void addChild(NodeDemo child) {
+            NodeDemo tracker = this;
+            NodeDemo lastNodeTracker = null;
+
+            while(tracker != null) {
+
+                if(child.getId() < this.getId()) {
+                    lastNodeTracker = tracker;
+                    tracker = this.getLc();
+                }
+                else if(child.getId() > this.getId()) {
+                    lastNodeTracker = tracker;
+                    tracker = this.getRc();
+                }
+
+            }
+
+            if(child.getId() < lastNodeTracker.getId())
+                lastNodeTracker.setLc(child);
+            else if(child.getId() > lastNodeTracker.getId())
+                lastNodeTracker.setRc(child);
+
+        }*/
+        private void setLc(NodeDemo lc) {
+            //this.lc = lc;
+            //lc = new NodeDemo(2);
+        }
+
+        private void setRc(NodeDemo rc) {
+            //this.rc = rc;
+            //rc = new NodeDemo(3);
+        }
+
         /*
-                public void setId(int id) {
-                    //Stub
-                }
-
-                public void setLc(NodeDemo lc) {
-                    //Stub
-                }
-
-                public void setRc(NodeDemo rc) {
-                    //Stub
-                }
-           */
+           public void setId(int id) {
+             //Stub
+           }
+        */
 
     }
 

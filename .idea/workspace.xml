@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bc54a0f-7304-4d10-808d-0209e2528d7d" name="Changes" comment="Added a README (draft version).">
+    <list default="true" id="3bc54a0f-7304-4d10-808d-0209e2528d7d" name="Changes" comment="Tentative implementation of the &quot;locate&quot; method.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TreeDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeDemo.java" afterDir="false" />
@@ -102,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653782574668</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Tentative implementation of the &quot;locate&quot; method.">
+      <created>1653786439517</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1653786439517</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -119,6 +126,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created API's initial prototype for test purposes." />
     <MESSAGE value="Added a README (draft version)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a README (draft version)." />
+    <MESSAGE value="Tentative implementation of the &quot;locate&quot; method." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tentative implementation of the &quot;locate&quot; method." />
   </component>
 </project>

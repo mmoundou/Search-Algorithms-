@@ -30,7 +30,7 @@ class TreeDemoTest {
 
     @org.junit.jupiter.api.Test
     void locate() {
-        assertEquals(false, myTree.locate(0));
+        assertEquals(true, myTree.locate(3));
     }
 
     /* @org.junit.jupiter.api.Test
