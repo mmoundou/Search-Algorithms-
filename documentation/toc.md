@@ -1,4 +1,4 @@
-[1.Introduction](intro.md)
+[1.Introduction](introduction.md)
 
 [2.Designing the Algorithm](designing.md)
 

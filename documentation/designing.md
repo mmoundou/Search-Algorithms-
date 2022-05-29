@@ -1,60 +1,60 @@
-# **Designing the Algorithm**
+# **Designing the Algorithm
 
-To effectively search our tree, we must ensure that it *exists*. From an every-day point of view, the previous
-statement does not make sense--searching a tree implies that it exists. Since we are dealing with memory,however,
-a tree is typically represented by a variable, and this variable interfaces between our program and the tree's contents.
 
-Let myTree be our tree variable; the following piece of code comes to mind: **if myTree != null**.
-Depending on whether we are querying the first element of our tree or any of its descendants,
-a query might be of type **myTree.head == searchVal** or **myTree.descendant == searchVal**.
-More generally, though, a query would be of type **myTree.element == searchVal**.
+Before implementing our search algorithm, we must design it, measure it against system requirements, and test it for any
+inconsistencies. This will help prevent issues that might be much harder to solve down the line (with the added benefit
+of serving as documentation for our algorithm). 
 
-At any level of a non-empty tree, we usually have 04 types of representations: a single tree element (also called node);
-an element with left descendant; an element with right descendant; an element with both right and left descendants.
-We must take these representations in consideration when designing our algorithm, thus leading us to the following
-pseudocode:
-
-    - Is tree's variable null? 
-      - If yes, stop search
-      - If no, query the tree's head node 
-        - Is head's value == desired value? 
-          - If yes, stop search 
-          - If no, check for children nodes
-          - Check all descendants until desired value is found or end of tree is reached
-    - Return value indicating that search was successful or unsuccessful 
 
 ## **Taking in Account the Data Structure Specifics**
 
-Earlier, we assumed our tree did not allow for duplicates, and doing so allowed us some leeway in how we proceeded.
-This is not the case all the time, as some tree API's allow for duplicate values. Another thing we must consider is
-how our values (license plate numbers) are stored internally: are they stored in ascending order, descending order, or
-sequentially? This would arguably have the greatest impact in what we do next.
 
-If the values are stored in ascending order, we could implement bits of our search as follows:
+Previously, we stated that our tree's internal structure would mimic the shape of a triangle. While seemingly trivial, 
+such a detail allows us a preliminary idea of what traversing our tree would look like:
 
-    if(myTree.node.value == value) 
-        value found
-    else if(myTree.node.value > value)
-        traverse left side of node
-    else if(myTree.node.value < value)
-        traverse right side of node
+- Query a node
+- Query a node's left child (if applicable)
+- Query a node's right child (if applicable) 
 
-The above logic would be reversed for both the "if else" statements in descending order.
+Something else worth considering would be whether our tree stores duplicate values: in the even that our
+tree contains the value "2", and that an operation attempts to add the value "2" to said tree again, would the operation
+successfully complete? There is no answer, because that would depend on what real-life system our 
+tree's API is modeled after. If, for instance, our tree stores birthdays, duplicates would be inevitable, since millions
+of people share the same birthday (looking at you, September babies!). If we are dealing with a license plate 
+registration system, on the other hand, our tree would contain only unique values. Last, would the tree store values
+in ascending order? Descending order? Or perhaps sequentially? These are all things to consider before moving forward.
 
-If sequential, we could simply traverse the tree as a traditional Linked List, whereby, for each node, we access
-the node that follows it as follows:
 
-    if(myTree.node.value == value)
-        value found
-    else(myTree.node.next)
+## **Prototyping the Algorithm  
 
-For our exercise, we will assume that the tree's nodes are arranged in ascending order.
 
-## **Final Steps**
+For this section and onward, we will assume a tree that, additionally to having a triangular shape, does not allow for 
+duplicate values and sorts its values in ascending order. The following would then be our proposed algorithm: 
 
-Piecing together everything said above, we have the following finalized pseudocode:
+- Query head node 
+- If desired value is found, stop search; otherwise continue
+- Check for head node's children
+- If found, query children nodes; otherwise stop search
 
-    - Check for null status of tree's variable
-    - Query each node
-        - If node's value equals desired value, notify caller 
-    - Return search status to caller
+The nice thing about a sorted tree (either ascending or descending) is that is nicely works with binary search which 
+makes for an elegant and efficient search. I wish I came up with binary search myself, but I know how to use it,
+at least; that's almost the same thing, right? No? Okay. Refining our algorithm to implement a binary search, we get: 
+
+- Query head node
+- If desired value is found, stop search; otherwise continue
+- If search value lesser than head node value, proceed to the left; otherwise proceed to the right
+- Check for left/right children 
+- If found, query left/right children; otherwise stop search
+
+An unexpected issue we might run into is that of deciding what to do in the case of a successful or unsuccessful search: 
+given that a method will implement the above algorithm, and that another method will call the implementing method, what
+value, if any, should we return to the caller? Should we return a true/false boolean value? If wrapping our tree's 
+values in objects, should we return references to said objects (when successful) and null values
+(when unsuccessful)? This again, would all depend on system requirements and architecture choices. 
+What we can say, though, is that we'd have more freedom over this if the caller and algorithm-implementing method were 
+built by the same engineering team than if they were each part of different engineering groups, interacting with one
+another without necessarily sharing the same design philosophy. 
+
+
+
+    
