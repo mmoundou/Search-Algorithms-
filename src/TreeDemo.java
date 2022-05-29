@@ -40,6 +40,7 @@ public class TreeDemo {
      *
      * @param id - an integer value representing a license plate.
      *
+     *
      * */
 
     public void addId(int id) {
@@ -56,7 +57,11 @@ public class TreeDemo {
      * */
 
     public void addIdArray(int[] idArray) {
-        head.addChildArray(idArray);
+
+        for(int index = 0; index < idArray.length; index++) {
+            if(!locate(idArray[index]))
+                head.addChild(idArray[index]);
+        }
 
     }
 
