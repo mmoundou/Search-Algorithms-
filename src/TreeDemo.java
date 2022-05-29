@@ -43,7 +43,8 @@ public class TreeDemo {
      * */
 
     public void addId(int id) {
-        head.addChild(id);
+        if(!locate(id))
+            head.addChild(id);
     }
 
     /**
