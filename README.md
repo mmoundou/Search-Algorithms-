@@ -41,7 +41,7 @@ pseudocode:
           - Check all descendants until desired value is found or end of tree is reached
     - Return value indicating that search was successful or unsuccessful 
 
-## **Taking in Account the Data Structure's Specifics** ##
+## **Taking in Account the Data Structure's Specifics**
 
 Earlier, we assumed our tree did not allow for duplicates, and doing so allowed us some leeway in how we proceeded.
 This is not the case all the time, as some tree API's allow for duplicate values. Another thing we must consider is 
@@ -65,4 +65,16 @@ the node that follows it as follows:
     if(myTree.node.value == value)
         value found
     else(myTree.node.next)
+
+For our exercise, we will assume that the tree's nodes are arranged in ascending order. 
+
+## **Final Steps**
+
+Piecing together everything said above, we have the following finalized pseudocode: 
+
+    - Check for null status of tree's variable
+    - Query each node
+        - If node's value equals desired value, notify caller 
+    - Return search status to caller
+
 
