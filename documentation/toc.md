@@ -4,6 +4,10 @@
 
 > [• Taking in Account System Requirements and Data Structure Specifics](./designing.md#taking-in-account-the-data-structure-specifics)
 
-> [• Final Steps](./designing.md#final-steps)
+> [• Prototyping the Algorithm](./designing.md#prototyping-the-algorithm)
 
-[3.Testing the Algorithm](testing.md)
+> [• Wrapping Up](./designing.md#wrapping-up)
+
+[3. Implementing the Algorithm](./implementing.md)
+
+[4.Testing the Algorithm](testing.md)

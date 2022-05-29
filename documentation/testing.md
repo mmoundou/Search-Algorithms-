@@ -1,3 +1,5 @@
+# **Testing the Algorithm**
+
 What are the ways in which a search algorithm might fail? A question I am quite capable of answering, since I have had
 many nightmarish nights over this topic. Whether it be because of a recursive algorithm I know longer knew 2 days from 
 the time I wrote it, or clobbered memory in C...yeah, I know all too well the ways in which a search algorith can fail. 
