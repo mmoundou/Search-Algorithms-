@@ -1,4 +1,4 @@
-## **Designing the Algorithm**
+# **Designing the Algorithm**
 
 To effectively search our tree, we must ensure that it *exists*. From an every-day point of view, the previous
 statement does not make sense--searching a tree implies that it exists. Since we are dealing with memory,however,
