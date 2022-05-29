@@ -1,5 +1,5 @@
 
-**Motivation**
+# **Motivation**
 
 Most programming languages have pre-defined search algorithms; leveraging them allows for efficient software development and peace (as most of them 
 have been thoroughly tested for reliability and compatibility). Sometimes, however, they are not suited for some custom API's, 
