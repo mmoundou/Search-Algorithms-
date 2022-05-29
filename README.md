@@ -31,7 +31,12 @@ At any level of a non-empty tree, we usually have 04 types of representations: a
 an element with left descendant; an element with right descendant; an element with both right and left descendants.
 We must take these representations in consideration when designing our algorithm, thus leading us to the following
 pseudocode: 
-
+<details>
+  <summary>Code example</summary>
+  <p>
+    ...
+  </p>
+</details>
     - Is tree's variable null? 
       - If yes, stop search
       - If no, query the tree's head node 

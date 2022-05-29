@@ -11,9 +11,10 @@
 
 public class TreeDemo {
 
-    private final NodeDemo head;
+    private NodeDemo head;
 
-    public TreeDemo() { // Default constructor, implemented for test purposes
+    // Default constructor, implemented for test purposes
+    public TreeDemo() {
         head = new NodeDemo();
     }
 
@@ -23,28 +24,26 @@ public class TreeDemo {
 
     public TreeDemo(int[] idArray) {
 
-        head = new NodeDemo(idArray[0]);
+        int[] arr = new int[idArray.length - 1];
 
-        for(int index = 1; index < idArray.length; index++) {
-            if(!locate(idArray[index]))
-                head.addChild(idArray[index]);
-        }
+        for(int index = 1; index < idArray.length; index++)
+            arr[index - 1] = idArray[index];
+
+        head = new NodeDemo(idArray[0]);
+        head.addChildArray(arr);
 
     }
 
     /**
      * addId takes in an integer parameter representing a license plate number,
-     * and loads it into the Tree's data structure. Before loading the parameter
-     * into the data structure, addId verifies that the value does not already
-     * exist in our data structure.
+     * and loads it into the Tree's data structure.
      *
      * @param id - an integer value representing a license plate.
      *
      * */
 
     public void addId(int id) {
-        if(!locate(id))
-            head.addChild(id);
+        head.addChild(id);
     }
 
     /**
@@ -56,11 +55,7 @@ public class TreeDemo {
      * */
 
     public void addIdArray(int[] idArray) {
-
-        for (int i : idArray) {
-            if (!locate(i))
-                head.addChild(i);
-        }
+        head.addChildArray(idArray);
 
     }
 
@@ -83,7 +78,7 @@ public class TreeDemo {
                 return true;
             else if (tracker.getId() > id)
                 tracker = tracker.lc;
-            else
+            else if (tracker.getId() < id)
                 tracker = tracker.rc;
 
         }
@@ -138,11 +133,37 @@ public class TreeDemo {
 
             }
 
-            if(lastNodeTracker != null) {
+            if(id < lastNodeTracker.getId())
+                lastNodeTracker.setLc(new NodeDemo(id));
+            else if(id > lastNodeTracker.getId())
+                lastNodeTracker.setRc(new NodeDemo(id));
 
-                if (id < lastNodeTracker.getId())
+        }
+
+        void addChildArray(int[] childArray) {
+
+            for(int index = 0; index < childArray.length; index++) {
+
+                int id = childArray[index];
+                NodeDemo tracker = head;
+                NodeDemo lastNodeTracker = tracker;
+
+                while(tracker != null) {
+
+                    if(id < tracker.getId()) {
+                        lastNodeTracker = tracker;
+                        tracker = tracker.getLc();
+                    }
+                    else if(id > tracker.getId()) {
+                        lastNodeTracker = tracker;
+                        tracker = tracker.getRc();
+                    }
+
+                }
+
+                if(id < lastNodeTracker.getId())
                     lastNodeTracker.setLc(new NodeDemo(id));
-                else
+                else if(id > lastNodeTracker.getId())
                     lastNodeTracker.setRc(new NodeDemo(id));
 
             }
