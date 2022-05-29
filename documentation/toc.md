@@ -1,5 +1,5 @@
 [1.Introduction](intro.md)
-[* Taking in Account System Requirements and Data Structure Specifics](./intro.md#"Taking in Account the Data Structure's Specifics")
+[* Taking in Account System Requirements and Data Structure Specifics](./intro.md#taking-in-account-the-data-structure's-specifics)
 [* Final Steps](./intro.md#Final Steps)
 
 [2.Designing the Algorithm](designing.md)
