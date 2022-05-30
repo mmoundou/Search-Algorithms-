@@ -7,6 +7,8 @@ however, especially when dealing with custom API's,
 so I figured that redesigning one popular search algorithm from scratch (the Binary Search algorithm) 
 would be a good way to play around with the fundamentals and verify that I can build search algorithms of my own. 
 
-[Table of Contents.](./documentation/toc.md)
+
+
+[next](./documentation/toc.md) | [end](./documentation/final_words.md)
 
 

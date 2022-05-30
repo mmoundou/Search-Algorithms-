@@ -7,10 +7,12 @@
     <list default="true" id="3bc54a0f-7304-4d10-808d-0209e2528d7d" name="Changes" comment="See comment.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/designing.md" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/designing.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/final_words.md" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/final_words.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/documentation/implementing.md" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/implementing.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/introduction.md" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/introduction.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/documentation/testing.md" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/testing.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/documentation/toc.md" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/toc.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tree_illustration.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
