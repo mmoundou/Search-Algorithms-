@@ -7,3 +7,7 @@ comes to software development. What is the solution to one problem, might well t
 so it's important to understand the fundamentals while having the flexibility to tailor them to different scenarios. I 
 am no expert algorithmer--totally made up word--but it's nice to know that I already got the ball rolling in the right
 direction.
+
+
+
+[previous](implementing.md) | [start](../README.md)

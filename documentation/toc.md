@@ -8,8 +8,12 @@
 
 > [2.3. Wrapping Up](./designing.md#wrapping-up)
 
-[3. Implementing the Algorithm](./implementing.md)
+[3. Testing the Algorithm](testing.md)
 
-[4. Testing the Algorithm](testing.md)
+[4. Implementing the Algorithm](./implementing.md)
 
 [5. Final Words](final_words.md)
+
+
+
+[previous](../README.md) | [next](designing.md)

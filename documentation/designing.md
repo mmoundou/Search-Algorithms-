@@ -66,4 +66,6 @@ of search algorithms--relying on pre-defined ones might be convenient,
 but there will likely come a time when one is required to build one of their own. 
 Better get used to it now than later; no?
 
-[Next..](implementing.md)
+
+
+[previous](introduction.md) | [next](testing.md)

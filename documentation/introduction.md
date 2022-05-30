@@ -10,4 +10,6 @@ Traversing such a tree would consist of querying each node, retrieving its value
 searching for, then indicating whether there is a match: in such a case, the search would stop; otherwise, we would
 continue traversing the tree until either the desired value was found or we had no more nodes to query.
 
-[next..](designing.md)
+
+
+[previous](../README.md) | [next..](designing.md)

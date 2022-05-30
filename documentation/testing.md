@@ -21,4 +21,6 @@ Thus, the following could comprise the skeleton of our unit tests:
 
 [This](../src/TreeDemoTest.java) is what our test guidelines would look like in live code.
 
-[Final Words](final_words.md)
+
+
+[previous](designing.md) | [next](implementing.md)
