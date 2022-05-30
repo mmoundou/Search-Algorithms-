@@ -16,4 +16,4 @@
 
 
 
-[previous](../README.md) | [next](designing.md)
+[prev.](../README.md) | [next](designing.md)

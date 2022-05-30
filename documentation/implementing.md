@@ -35,4 +35,4 @@ to the actual source code for my fellow curious potatoes.
 
 
 
-[previous](testing.md) | [next](final_words.md)
+[prev.](testing.md) | [next](final_words.md)

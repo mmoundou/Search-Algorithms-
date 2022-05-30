@@ -10,4 +10,4 @@ direction.
 
 
 
-[previous](implementing.md) | [start](../README.md)
+[prev.](implementing.md) | [start](../README.md)

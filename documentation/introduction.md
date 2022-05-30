@@ -12,4 +12,4 @@ continue traversing the tree until either the desired value was found or we had 
 
 
 
-[previous](../README.md) | [next..](designing.md)
+[prev.](../README.md) | [next..](designing.md)

@@ -68,4 +68,4 @@ Better get used to it now than later; no?
 
 
 
-[previous](introduction.md) | [next](testing.md)
+[prev.](introduction.md) | [next](testing.md)

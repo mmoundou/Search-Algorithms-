@@ -23,4 +23,4 @@ Thus, the following could comprise the skeleton of our unit tests:
 
 
 
-[previous](designing.md) | [next](implementing.md)
+[prev.](designing.md) | [next](implementing.md)
