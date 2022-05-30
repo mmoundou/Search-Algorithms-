@@ -19,3 +19,6 @@ Thus, the following could comprise the skeleton of our unit tests:
     - Check for cases that might cause StackOverflow errors or unresponsiveness; ensure that both cases
     are appropriately handled by the program
 
+[This](../src/TreeDemoTest.java) is what our test guidelines would look like in live code.
+
+[Final Words](final_words.md)
